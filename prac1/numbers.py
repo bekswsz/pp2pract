@@ -1,3 +1,6 @@
-x=3
-y=5
-print(x+y)
+x = 10 #int
+y = 5.5 #float
+z = 3j #complex
+print(type(x))
+print(type(y))
+print(type(z))

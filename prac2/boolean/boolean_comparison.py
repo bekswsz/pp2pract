@@ -1,17 +1,17 @@
 #1
 a = 67
-b = 22
+b = 57
 print(a > b)
 
 
 #2
-x = 5
-y = 5
+x = 10
+y = 10
 print(x == y)
 
 
 #3
-p = 8
+p = 6
 q = 9
 print(p != q)
 

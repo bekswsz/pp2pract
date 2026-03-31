@@ -28,6 +28,42 @@ def upload_from_csv(file_path):
         print("Все контакты из CSV загружены!")
         cur.close()
         conn.close()
+        
+        
+# 3. Обновление номера телефона по имени
+def update_contact(name, new_phone):
+    conn = get_connection()
+    if conn:
+        cur = conn.cursor()
+        cur.execute("UPDATE phonebook SET phone_number = %s WHERE first_name = %s", (new_phone, name))
+        conn.commit()
+        print(f"Данные для {name} обновлены.")
+        cur.close()
+        conn.close()
+
+# 4. Поиск (Фильтрация)
+def query_contacts(pattern):
+    conn = get_connection()
+    if conn:
+        cur = conn.cursor()
+        # Поиск по части имени (например, все на 'I')
+        cur.execute("SELECT * FROM phonebook WHERE first_name LIKE %s", (pattern + '%',))
+        rows = cur.fetchall()
+        for row in rows:
+            print(row)
+        cur.close()
+        conn.close()
+
+# 5. Удаление
+def delete_contact(name):
+    conn = get_connection()
+    if conn:
+        cur = conn.cursor()
+        cur.execute("DELETE FROM phonebook WHERE first_name = %s", (name,))
+        conn.commit()
+        print(f"Контакт {name} удален.")
+        cur.close()
+        conn.close()
 
 # Запуск для проверки:
 # insert_user_manually()
